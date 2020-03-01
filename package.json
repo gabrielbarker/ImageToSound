@@ -1,0 +1,27 @@
+{
+  "name": "imagetosound",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && node out/index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gabrielbarker/ImageToSound.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gabrielbarker/ImageToSound/issues"
+  },
+  "homepage": "https://github.com/gabrielbarker/ImageToSound#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
+  "dependencies": {
+    "@cronvel/get-pixels": "^3.3.1",
+    "@types/node": "^13.7.7",
+    "scribbletune": "^3.5.0"
+  }
+}
