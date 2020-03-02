@@ -3,36 +3,43 @@ import * as fs from "fs";
 import PixelDataWriter from "./PixelDataWriter";
 import PixelMusicalData from "./PixelMusicalData";
 
+// This class handles getting the pixels from the image and using that data
 export default class PixelHandler {
-  public writePixelDataToFile(imagePath: string, outputPath: string) {
-    const writePixelsToFile = (err: Error, pixels: any) => {
-      console.log(`Gettings pixels from ${imagePath}...`);
-      const writeStream = fs.createWriteStream(outputPath);
-      const writer = new PixelDataWriter(pixels, writeStream);
-
-      if (err) {
-        console.log("Could not find image at " + imagePath);
-        return;
-      } else {
-        console.log(`Writing pixels to ${outputPath}...`);
-        writer.writePixelsToFile();
-      }
-    };
-
-    getPixels(imagePath, writePixelsToFile);
+  public Ready: Promise<any>;
+  private imagePath: string;
+  constructor(imagePath: string) {
+    this.imagePath = imagePath;
+    this.Ready = new Promise((resolve, reject) => {
+      const savePixels = (err: any, pixels: any) => {
+        resolve(pixels);
+      };
+      getPixels(imagePath, savePixels);
+    });
   }
 
-  public getAllPixels(imagePath: string) {
-    console.log(`Gettings pixels from ${imagePath}...`);
-    const getAllPixels = (err: Error, pixels: any) => {
-      const musicalData = new PixelMusicalData(pixels);
+  // This function the pixel data to a txt file
+  public writePixelDataToFile = async (outputPath: string) => {
+    console.log(`Gettings pixels from ${this.imagePath}...`);
+    const pixels = await this.Ready;
+    const writeStream = fs.createWriteStream(outputPath);
+    const writer = new PixelDataWriter(pixels, writeStream);
+    console.log(`Writing pixels to ${outputPath}...`);
+    writer.writePixelsToFile();
+  };
 
-      if (err) {
-        console.log("Could not find image at " + imagePath);
-        return;
-      }
+  // This function gets the chord progression and pattern from the pixel data
+  public async getScribbletuneData() {
+    console.log(`Gettings pixels from ${this.imagePath}...`);
+    const pixels = await this.Ready;
+    const musicalData = new PixelMusicalData(pixels);
+    let patterns = musicalData.getPatternsFromPixelRows();
+    let progressions = musicalData.getProgressionsFromPixelRows();
+    for (let i = 0; i < patterns.length; i++) {
+      console.log(`pattern: ${patterns[i]}, progression: ${progressions[i]}`);
+    }
+    return {
+      patterns: patterns,
+      progressions: progressions
     };
-
-    getPixels(imagePath, getAllPixels);
   }
 }
