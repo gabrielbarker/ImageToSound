@@ -2,7 +2,8 @@ import PixelHandler from "./PixelHandler";
 const scribble = require("scribbletune");
 
 // Path of the image to convert
-const filePath = "/Users/gbarker/Desktop/boxtiny.jpg";
+const filePath = "/Users/gbarker/Desktop/boxpixelated.jpg";
+const pathOut = "/Users/gbarker/Desktop/boxpixelated.txt";
 
 // This function generates a midi file from the above image.
 // The rules for how it does this are specified in the PixelMusicData class
@@ -25,4 +26,9 @@ async function generateMidi(path: string) {
   scribble.midi(clips[0], "test.mid");
 }
 
-generateMidi(filePath);
+async function generateText(path: string, pathOut: string) {
+  const pd = new PixelHandler(path);
+  pd.writePixelDataToFile(pathOut);
+}
+
+generateText(filePath, pathOut);
