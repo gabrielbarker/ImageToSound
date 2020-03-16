@@ -105,3 +105,6 @@ dist
 
 # Typescript compiled files
 out/
+
+# Demo scripts
+src/demo/
