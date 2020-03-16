@@ -1,8 +1,6 @@
 import * as readline from "readline";
 import Pixel from "./Pixel";
 
-// This class is responsible for the rules that are applied to the pixel
-// data in order to generate sounds
 export default class PixelMusicalData {
   private pixelData: number[] = [];
   private pixelRows: Pixel[][] = [];
@@ -17,7 +15,6 @@ export default class PixelMusicalData {
     this.getPixelRows();
   }
 
-  // This function collects the patterns generated from each row of pixels
   public getPatternsFromPixelRows = (): string[] => {
     let patterns: string[] = [];
     this.pixelRows.forEach(pixelRow => {
@@ -26,7 +23,6 @@ export default class PixelMusicalData {
     return patterns;
   };
 
-  // This function collects the progressions generated from each row of pixels
   public getProgressionsFromPixelRows = (): string[] => {
     let progressions: string[] = [];
     this.pixelRows.forEach(pixelRow => {
@@ -35,9 +31,6 @@ export default class PixelMusicalData {
     return progressions;
   };
 
-  // This function sorts the pixels in order of brightness, and records the index of each
-  // pixel. The original row of pixels is then mapped to a collection of indices, which
-  // are turned into roman numerals as this is how Scribbletune understands progressions
   private getProgressionFromPixelRow = (row: Pixel[]): string => {
     const unsortedRow = [...row];
     row.sort((a, b) => a.compareTo(b));
@@ -62,9 +55,6 @@ export default class PixelMusicalData {
     return numeralValue;
   }
 
-  // This loops through the pixels and, if the one pixel is brighter than the next, adds a
-  // note to the pattern. If the next note is brighter than the first, adds a sustain to the
-  // note (holds the note) and if they are equal, adds a non-note
   private getPatternFromPixelRow = (row: Pixel[]): string => {
     let pattern = "";
     row.forEach((pixel, i) => {
