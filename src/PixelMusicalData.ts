@@ -1,4 +1,3 @@
-import * as readline from "readline";
 import Pixel from "./Pixel";
 
 // This class is responsible for the rules that are applied to the pixel
@@ -20,7 +19,7 @@ export default class PixelMusicalData {
   // This function collects the patterns generated from each row of pixels
   public getPatternsFromPixelRows = (): string[] => {
     let patterns: string[] = [];
-    this.pixelRows.forEach(pixelRow => {
+    this.pixelRows.forEach((pixelRow) => {
       patterns.push(this.getPatternFromPixelRow(pixelRow));
     });
     return patterns;
@@ -29,7 +28,7 @@ export default class PixelMusicalData {
   // This function collects the progressions generated from each row of pixels
   public getProgressionsFromPixelRows = (): string[] => {
     let progressions: string[] = [];
-    this.pixelRows.forEach(pixelRow => {
+    this.pixelRows.forEach((pixelRow) => {
       progressions.push(this.getProgressionFromPixelRow(pixelRow));
     });
     return progressions;
@@ -41,8 +40,8 @@ export default class PixelMusicalData {
   private getProgressionFromPixelRow = (row: Pixel[]): string => {
     const unsortedRow = [...row];
     row.sort((a, b) => a.compareTo(b));
-    const indexMap = unsortedRow.map(pixel => row.indexOf(pixel));
-    return indexMap.map(index => this.numeralise(index)).join(" ");
+    const indexMap = unsortedRow.map((pixel) => row.indexOf(pixel));
+    return indexMap.map((index) => this.numeralise(index)).join(" ");
   };
 
   private numeralise(index: number) {
@@ -79,7 +78,7 @@ export default class PixelMusicalData {
     let pixelRows: Pixel[][] = [];
     for (let rowNumber = 0; rowNumber < this.numberOfRows; rowNumber++) {
       let pixelRow: Pixel[] = this.getPixelRow(rowNumber);
-      if (!pixelRows.find(row => row.toString() === pixelRow.toString())) {
+      if (!pixelRows.find((row) => row.toString() === pixelRow.toString())) {
         pixelRows.push(pixelRow);
       }
     }
