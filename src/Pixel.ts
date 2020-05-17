@@ -16,8 +16,8 @@ export default class Pixel {
   }
 
   public compareTo(pixel: Pixel): number {
-    const thisMagnitude = this.getMagnitudeOf(this);
-    const thatMagnitude = this.getMagnitudeOf(pixel);
+    const thisMagnitude = Pixel.getMagnitudeOf(this);
+    const thatMagnitude = Pixel.getMagnitudeOf(pixel);
 
     if (thisMagnitude === thatMagnitude) return 0;
     return thisMagnitude > thatMagnitude ? 1 : -1;
@@ -28,7 +28,7 @@ export default class Pixel {
     return `[${paddedPixelValues.join(",")}]`;
   }
 
-  private getMagnitudeOf(p: Pixel) {
-    return Math.sqrt(p.pixel.reduce((prev, curr) => (prev += curr * curr)));
+  private static getMagnitudeOf(p: Pixel) {
+    return Math.sqrt(p.R * p.R + p.G * p.G + p.B * p.B);
   }
 }
