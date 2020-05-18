@@ -2,7 +2,7 @@ import PixelHandler from "./PixelHandler";
 const scribble = require("scribbletune");
 
 // Path of the image to convert
-const filePath = "/Users/gbarker/Desktop/boxtiny.jpg";
+const filePath = "/Users/gbarker/Desktop/box1.jpg";
 
 // This function generates a midi file from the above image.
 // The rules for how it does this are specified in the PixelMusicData class
@@ -17,7 +17,7 @@ async function generateMidi(path: string) {
     clips.push(
       scribble.clip({
         notes: scribble.arp(scribble.getChordsByProgression("A2 minor", progression)),
-        pattern: pattern
+        pattern: pattern,
       })
     );
   }

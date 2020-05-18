@@ -16,15 +16,19 @@ export default class Pixel {
   }
 
   public compareTo(pixel: Pixel): number {
-    const thisMagnitude = Math.sqrt(this.pixel.reduce((prev, curr) => (prev += curr * curr)));
-    const thatMagnitude = Math.sqrt(pixel.pixel.reduce((prev, curr) => (prev += curr * curr)));
+    const thisMagnitude = Pixel.getMagnitudeOf(this);
+    const thatMagnitude = Pixel.getMagnitudeOf(pixel);
 
     if (thisMagnitude === thatMagnitude) return 0;
     return thisMagnitude > thatMagnitude ? 1 : -1;
   }
 
   public toString(): string {
-    const paddedPixelValues = this.pixel.map(n => n.toString().padStart(3, " "));
+    const paddedPixelValues = this.pixel.map((n) => n.toString().padStart(3, " "));
     return `[${paddedPixelValues.join(",")}]`;
+  }
+
+  private static getMagnitudeOf(p: Pixel) {
+    return Math.sqrt(p.R * p.R + p.G * p.G + p.B * p.B);
   }
 }
