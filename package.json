@@ -2,9 +2,10 @@
   "name": "imagetosound",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "out/main.js",
   "scripts": {
-    "start": "tsc && node out/index"
+    "start": "tsc && node out/index",
+    "app": "tsc && electron ."
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
   },
   "dependencies": {
     "@cronvel/get-pixels": "^3.3.1",
-    "@types/node": "^13.7.7",
+    "@types/node": "12.0.0",
+    "electron": "^8.3.0",
     "scribbletune": "^3.5.0"
   }
 }
