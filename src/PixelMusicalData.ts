@@ -1,7 +1,9 @@
 import PatternCreator from "./PatternCreator";
 import BrightnessPatternCreator from "./BrightnessPatternCreator";
+import DarknessPatternCreator from "./DarknessPatternCreator";
 import ProgressionCreator from "./ProgressionCreator";
 import RowOrderProgressionCreator from "./RowOrderProgressionCreator";
+import ReverseOrderProgressionCreator from "./ReverseOrderProgressionCreator";
 
 export default class PixelMusicalData {
   private patternCreator: PatternCreator;
