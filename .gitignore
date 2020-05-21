@@ -105,3 +105,6 @@ dist
 
 # Typescript compiled files
 out/
+
+# Webpack bundled files
+build/
