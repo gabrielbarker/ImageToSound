@@ -20,12 +20,16 @@ export default class MidiGenerator {
 
   public async generateMidi() {
     const pd = new PixelHandler(this.file.path);
-    const progressionCreatorFactory = new ProgressionCreatorFactory(await pd.Ready);
-    const patternCreatorFactory = new PatternCreatorFactory(await pd.Ready);
+    const pixels = await pd.getPixels();
+    const progressionCreatorFactory = new ProgressionCreatorFactory(pixels);
+    const patternCreatorFactory = new PatternCreatorFactory(pixels);
 
     const clips = [];
-    const progression = progressionCreatorFactory.getProgression(this.progression);
-    const pattern = patternCreatorFactory.getPattern(this.pattern);
+    const progressionCreator = progressionCreatorFactory.getProgression(this.progression);
+    const patternCreator = patternCreatorFactory.getPattern(this.pattern);
+
+    const progression = progressionCreator.getProgressions().join(" ");
+    const pattern = patternCreator.getPatterns().join("");
 
     let notes = scribble.getChordsByProgression(this.scale, progression);
     if (this.arpeggiate) notes = scribble.arp(notes);

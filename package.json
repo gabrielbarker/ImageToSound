@@ -5,7 +5,8 @@
   "main": "out/main.js",
   "scripts": {
     "start": "tsc && node out/index",
-    "app": "tsc && electron ."
+    "app": "npm run bundle && electron .",
+    "bundle": "tsc && webpack-cli -p"
   },
   "repository": {
     "type": "git",
@@ -18,12 +19,16 @@
   },
   "homepage": "https://github.com/gabrielbarker/ImageToSound#readme",
   "devDependencies": {
-    "typescript": "^3.8.3"
+    "ts-loader": "^7.0.4",
+    "typescript": "^3.8.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
   },
   "dependencies": {
     "@cronvel/get-pixels": "^3.3.1",
     "@types/node": "12.0.0",
     "electron": "^8.3.0",
+    "image-pixels": "^2.2.2",
     "scribbletune": "^3.5.0"
   }
 }

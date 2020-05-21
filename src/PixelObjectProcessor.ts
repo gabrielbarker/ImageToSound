@@ -9,8 +9,8 @@ export default class PixelObjectProcessor {
 
   constructor(pixelsObject: any) {
     this.pixelData = pixelsObject.data;
-    this.widthInPixels = pixelsObject.shape[0];
-    this.numberOfRows = pixelsObject.shape[1];
+    this.widthInPixels = pixelsObject.width;
+    this.numberOfRows = pixelsObject.height;
     this.extractPixelRows();
   }
 

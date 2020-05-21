@@ -25,4 +25,9 @@ async function generateMidi(path: string) {
   scribble.midi(clips[0], "test.mid");
 }
 
+async function writeToTextFile(path: string) {
+  const pd = new PixelHandler(path);
+  pd.writePixelDataToFile(path.substring(0, path.lastIndexOf(".")) + ".txt");
+}
+
 generateMidi(filePath);
