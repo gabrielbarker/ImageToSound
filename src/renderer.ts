@@ -1,5 +1,5 @@
 // @ts-nocheck
-import MidiGenerator from "./MidiGenerator";
+import MidiGenerator from "./lib/MidiGenerator";
 
 const fileSelector = document.querySelector("#file-input");
 let file;

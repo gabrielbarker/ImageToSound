@@ -1,4 +1,4 @@
-import PixelHandler from "./PixelHandler";
+import PixelHandler from "./lib/PixelHandler";
 const scribble = require("scribbletune");
 
 // Path of the image to convert
