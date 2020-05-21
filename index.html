@@ -3,13 +3,182 @@
   <head>
     <meta charset="UTF-8" />
     <title>Hello World!</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
   </head>
-  <body>
-    <h1>Hello World!</h1>
-    We are using Node.js <span id="node-version"></span>, Chromium
-    <span id="chrome-version"></span>, and Electron <span id="electron-version"></span>.
+  <body style="-webkit-app-region: drag;">
+    <div class="container">
+      <h1 class="mt-4">Image To Sound</h1>
+      <div class="card-body border rounded mt-4 p-2">
+        <label for="file-input">Select Image</label>
+        <div class="custom-file">
+          <input type="file" id="file-input" class="custom-file-input" id="customFile" />
+          <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+      </div>
 
-    <!-- You can also require other files to run in this process -->
-    <script src="./dist/renderer.js"></script>
+      <div class="card-body border rounded mt-4 p-2">
+        <div id="scale-selectors">
+          <div class="row">
+            <div class="col-sm">
+              <label for="scale-note-select">Note</label>
+              <select id="scale-note-select" class="custom-select">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+              </select>
+            </div>
+            <div class="col-sm">
+              <label for="scale-octave-select">Octave</label>
+              <select id="scale-octave-select" class="custom-select">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+              </select>
+            </div>
+            <div class="col-8">
+              <label for="scale-select">Scale</label>
+              <select id="scale-select" class="custom-select">
+                <option value="major">Major</option>
+                <option value="minor">Minor</option>
+                <option value="aeolian">Aeolian</option>
+                <option value="altered">Altered</option>
+                <option value="augmented">Augmented</option>
+                <option value="augmented heptatonic">Augmented heptatonic</option>
+                <option value="balinese">Balinese</option>
+                <option value="bebop">Bebop</option>
+                <option value="bebop dominant">Bebop dominant</option>
+                <option value="bebop locrian">Bebop locrian</option>
+                <option value="bebop major">Bebop major</option>
+                <option value="bebop minor">Bebop minor</option>
+                <option value="chromatic">Chromatic</option>
+                <option value="composite blues">Composite blues</option>
+                <option value="diminished">Diminished</option>
+                <option value="dorian">Dorian</option>
+                <option value="dorian #4">Dorian #4</option>
+                <option value="double harmonic lydian">Double harmonic lydian</option>
+                <option value="double harmonic major">Double harmonic major</option>
+                <option value="egyptian">Egyptian</option>
+                <option value="enigmatic">Enigmatic</option>
+                <option value="flamenco">Flamenco</option>
+                <option value="flat six pentatonic">Flat six pentatonic</option>
+                <option value="flat three pentatonic">Flat three pentatonic</option>
+                <option value="half-whole diminished">Half-whole diminished</option>
+                <option value="harmonic major">Harmonic major</option>
+                <option value="harmonic minor">Harmonic minor</option>
+                <option value="hirajoshi">Hirajoshi</option>
+                <option value="hungarian major">Hungarian major</option>
+                <option value="hungarian minor">Hungarian minor</option>
+                <option value="ichikosucho">Ichikosucho</option>
+                <option value="in-sen">In-sen</option>
+                <option value="ionian augmented">Ionian augmented</option>
+                <option value="ionian pentatonic">Ionian pentatonic</option>
+                <option value="iwato">Iwato</option>
+                <option value="kafi raga">Kafi raga</option>
+                <option value="kumoijoshi">Kumoijoshi</option>
+                <option value="leading whole tone">Leading whole tone</option>
+                <option value="locrian">Locrian</option>
+                <option value="locrian #2">Locrian #2</option>
+                <option value="locrian major">Locrian major</option>
+                <option value="locrian pentatonic">Locrian pentatonic</option>
+                <option value="lydian">Lydian</option>
+                <option value="lydian #5P pentatonic">Lydian #5P pentatonic</option>
+                <option value="lydian #9">Lydian #9</option>
+                <option value="lydian augmented">Lydian augmented</option>
+                <option value="lydian diminished">Lydian diminished</option>
+                <option value="lydian dominant">Lydian dominant</option>
+                <option value="lydian dominant pentatonic">Lydian dominant pentatonic</option>
+                <option value="lydian minor">Lydian minor</option>
+                <option value="lydian pentatonic">Lydian pentatonic</option>
+                <option value="major">Major</option>
+                <option value="major blues">Major blues</option>
+                <option value="major flat two pentatonic">Major flat two pentatonic</option>
+                <option value="major pentatonic">Major pentatonic</option>
+                <option value="malkos raga">Malkos raga</option>
+                <option value="melodic minor">Melodic minor</option>
+                <option value="melodic minor fifth mode">Melodic minor fifth mode</option>
+                <option value="melodic minor second mode">Melodic minor second mode</option>
+                <option value="minor #7M pentatonic">Minor #7M pentatonic</option>
+                <option value="minor bebop">Minor bebop</option>
+                <option value="minor blues">Minor blues</option>
+                <option value="minor hexatonic">Minor hexatonic</option>
+                <option value="minor pentatonic">Minor pentatonic</option>
+                <option value="minor six diminished">Minor six diminished</option>
+                <option value="minor six pentatonic">Minor six pentatonic</option>
+                <option value="mixolydian">Mixolydian</option>
+                <option value="mixolydian pentatonic">Mixolydian pentatonic</option>
+                <option value="mystery #1">Mystery #1</option>
+                <option value="neopolitan">Neopolitan</option>
+                <option value="neopolitan major">Neopolitan major</option>
+                <option value="neopolitan major pentatonic">Neopolitan major pentatonic</option>
+                <option value="neopolitan minor">Neopolitan minor</option>
+                <option value="oriental">Oriental</option>
+                <option value="pelog">Pelog</option>
+                <option value="persian">Persian</option>
+                <option value="phrygian">Phrygian</option>
+                <option value="phrygian dominant">Phrygian dominant</option>
+                <option value="piongio">Piongio</option>
+                <option value="prometheus">Prometheus</option>
+                <option value="prometheus neopolitan">Prometheus neopolitan</option>
+                <option value="purvi raga">Purvi raga</option>
+                <option value="ritusen">Ritusen</option>
+                <option value="romanian minor">Romanian minor</option>
+                <option value="scriabin">Scriabin</option>
+                <option value="six tone symmetric">Six tone symmetric</option>
+                <option value="spanish heptatonic">Spanish heptatonic</option>
+                <option value="super locrian pentatonic">Super locrian pentatonic</option>
+                <option value="todi raga">Todi raga</option>
+                <option value="vietnamese 1">Vietnamese 1</option>
+                <option value="vietnamese 2">Vietnamese 2</option>
+                <option value="whole tone">Whole tone</option>
+                <option value="whole tone pentatonic">Whole tone pentatonic</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body border rounded mt-4 p-2">
+        <label for="progression-select">Progression</label>
+        <select id="progression-select" class="custom-select">
+          <option value="Default">Default</option>
+          <option value="Row Order">Row Order</option>
+          <option value="Reverse Row Order">Reverse Row Order</option>
+        </select>
+      </div>
+
+      <div class="card-body border rounded mt-4 p-2">
+        <label for="pattern-select">Pattern</label>
+        <select id="pattern-select" class="custom-select">
+          <option value="0">Default</option>
+          <option value="1">Brightness</option>
+          <option value="2">Darkness</option>
+        </select>
+      </div>
+
+      <div class="card-body border rounded mt-4 p-2">
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="arpCheck" />
+          <label class="custom-control-label" for="arpCheck">Arpeggiate?</label>
+        </div>
+      </div>
+
+      <button type="button" id="generate" class="btn btn-success btn-block mt-4">Generate</button>
+    </div>
+    <script src="./build/bundle.js"></script>
   </body>
 </html>
