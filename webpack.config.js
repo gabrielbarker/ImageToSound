@@ -9,6 +9,10 @@ module.exports = {
         test: /\.ts$/,
         use: "ts-loader",
       },
+      {
+        test: /\.node$/,
+        use: "node-loader",
+      },
     ],
   },
   resolve: {
