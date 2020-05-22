@@ -11,6 +11,7 @@ export default class PatternCreatorFactory {
   }
 
   public getPattern(name: string): PatternCreator {
+    console.log(name);
     if (name === "Brightness") return new BrightnessPatternCreator(this.pixelsObject);
     if (name === "Darkness") return new DarknessPatternCreator(this.pixelsObject);
     return new DefaultPatternCreator(this.pixelsObject);

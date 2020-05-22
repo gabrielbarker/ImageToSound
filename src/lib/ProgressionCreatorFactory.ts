@@ -10,10 +10,10 @@ export default class ProgressionCreatorFactory {
     this.pixelsObject = pixelsObject;
   }
 
-  public getProgression(name: string): ProgressionCreator {
+  public getProgression(name: string, scaleLength: number = 7): ProgressionCreator {
     if (name === "Reverse Row Order")
-      return new ReverseRowOrderProgressionCreator(this.pixelsObject);
-    if (name === "Row Order") return new RowOrderProgressionCreator(this.pixelsObject);
-    return new DefaultProgressionCreator(this.pixelsObject);
+      return new ReverseRowOrderProgressionCreator(this.pixelsObject, scaleLength);
+    if (name === "Row Order") return new RowOrderProgressionCreator(this.pixelsObject, scaleLength);
+    return new DefaultProgressionCreator(this.pixelsObject, scaleLength);
   }
 }

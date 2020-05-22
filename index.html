@@ -12,12 +12,33 @@
   </head>
   <body style="-webkit-app-region: drag;">
     <div class="container">
+      <div
+        class="toast-success fixed-top bg-success card-body border rounded mt-4 mx-5 p-2"
+        style="display: none;"
+      >
+        <h3>Success!</h3>
+        <p>A midi file was created</p>
+      </div>
+      <div
+        class="toast-error fixed-top bg-danger card-body border rounded mt-4 mx-5 p-2"
+        style="display: none;"
+      >
+        <h3>Error!</h3>
+        <p>Error message</p>
+      </div>
       <h1 class="mt-4">Image To Sound</h1>
       <div class="card-body border rounded mt-4 p-2">
         <label for="file-input">Select Image</label>
         <div class="custom-file">
           <input type="file" id="file-input" class="custom-file-input" id="customFile" />
           <label class="custom-file-label" for="customFile">Choose file</label>
+        </div>
+        <label for="save-name1" class="mt-3">Midi Name</label>
+        <div id="save-name1" class="input-group mb-2">
+          <input id="save-name" type="text" class="form-control" />
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary" type="button" id="random-name">Random</button>
+          </div>
         </div>
       </div>
 
@@ -164,9 +185,9 @@
       <div class="card-body border rounded mt-4 p-2">
         <label for="pattern-select">Pattern</label>
         <select id="pattern-select" class="custom-select">
-          <option value="0">Default</option>
-          <option value="1">Brightness</option>
-          <option value="2">Darkness</option>
+          <option value="Default">Default</option>
+          <option value="Brightness">Brightness</option>
+          <option value="Darkness">Darkness</option>
         </select>
       </div>
 

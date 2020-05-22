@@ -11,7 +11,7 @@ export default class PixelMusicalData {
 
   constructor(pixelsObject: any) {
     this.patternCreator = new BrightnessPatternCreator(pixelsObject);
-    this.progressionCreator = new RowOrderProgressionCreator(pixelsObject);
+    this.progressionCreator = new RowOrderProgressionCreator(pixelsObject, 7);
   }
 
   public getPatternsFromPixelRows(): string[] {
