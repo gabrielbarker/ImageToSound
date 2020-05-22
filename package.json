@@ -6,6 +6,7 @@
   "scripts": {
     "start": "tsc && node out/index",
     "app": "npm run bundle && electron .",
+    "electron": "electron .",
     "bundle": "tsc && webpack-cli -p"
   },
   "repository": {
@@ -25,7 +26,6 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
-    "@cronvel/get-pixels": "^3.3.1",
     "@types/node": "12.0.0",
     "electron": "^8.3.0",
     "image-pixels": "^2.2.2",
