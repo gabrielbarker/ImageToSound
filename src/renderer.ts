@@ -1,10 +1,12 @@
 // @ts-nocheck
 import MidiGenerator from "./lib/MidiGenerator";
+import RandomNameGenerator from "./lib/RandomNameGenerator";
 
+const nameGenerator = new RandomNameGenerator();
 const fileSelector = document.querySelector("#file-input");
 const saveName = document.querySelector("#save-name");
 
-setMidiNameTo(randomName());
+setMidiNameTo(nameGenerator.getName());
 
 if (fileSelector) {
   fileSelector.addEventListener("change", function (e) {
@@ -15,30 +17,33 @@ if (fileSelector) {
 }
 
 document.querySelector("#generate").addEventListener("click", async () => {
-  const file = fileSelector.files[0];
+  const path = fileSelector.files[0].path;
   const spec = getSpec();
-  generateOrError(file, spec);
+  generateOrError(path, spec);
 });
 
-document.querySelector("#random-name").addEventListener("click", () => setMidiNameTo(randomName()));
+document
+  .querySelector("#random-name")
+  .addEventListener("click", () => setMidiNameTo(nameGenerator.getName()));
 
-async function generateOrError(file, spec) {
+async function generateOrError(path, spec) {
   try {
-    await successfullyGenerateMidi(file, spec);
+    await successfullyGenerateMidi(path, spec);
   } catch (error) {
     displayToast(false, error.message);
   }
 }
 
-async function successfullyGenerateMidi(file, spec) {
-  const mg = new MidiGenerator(file, saveName.value, spec);
+async function successfullyGenerateMidi(path, spec) {
+  const mg = new MidiGenerator(path, saveName.value, spec);
   await mg.generateMidi();
   displayToast(true, `A midi was file named ${saveName.value} created!`);
-  setMidiNameTo(randomName());
+  setMidiNameTo(nameGenerator.getName());
 }
 
 function getSpec() {
   return {
+    compress: document.querySelector("#compressCheck").checked,
     progression: document.querySelector("#progression-select").value,
     pattern: document.querySelector("#pattern-select").value,
     scale: getScale(),
@@ -62,14 +67,4 @@ function displayToast(success: boolean, message: string) {
 
 function setMidiNameTo(text: string) {
   saveName.value = text;
-}
-
-function randomName() {
-  let name = "";
-  const len = Math.random() * 15 + 6;
-  for (let i = 0; i < len; i++) {
-    const c = String.fromCharCode(Math.floor(Math.random() * 26) + 97);
-    name += Math.random() > 0.5 ? c.toUpperCase() : c;
-  }
-  return name;
 }

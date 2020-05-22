@@ -1,27 +1,32 @@
 import PixelHandler from "./PixelHandler";
 import ProgressionCreatorFactory from "./ProgressionCreatorFactory";
 import PatternCreatorFactory from "./PatternCreatorFactory";
+import Compressor from "./Compressor";
 const scribble = require("scribbletune");
 
 export default class MidiGenerator {
-  private file: any;
+  private path: string;
   private midiName: string;
   private progression: string = "";
   private pattern: string = "";
   private scale: string = "";
   private arpeggiate: boolean = false;
+  private compress: boolean = false;
 
-  constructor(file: any, midiName: string, spec: any) {
-    this.file = file;
+  constructor(path: string, midiName: string, spec: any) {
+    this.path = path;
     this.midiName = midiName;
     this.progression = spec.progression;
     this.pattern = spec.pattern;
     this.scale = spec.scale;
     this.arpeggiate = spec.arpeggiate;
+    this.compress = spec.compress;
   }
 
   public async generateMidi() {
-    const pd = new PixelHandler(this.file.path);
+    if (this.compress) await this.compressFile();
+
+    const pd = new PixelHandler(this.path);
     const pixels = await pd.getPixels();
     const progressionCreatorFactory = new ProgressionCreatorFactory(pixels);
     const patternCreatorFactory = new PatternCreatorFactory(pixels);
@@ -39,8 +44,14 @@ export default class MidiGenerator {
 
     clips.push(scribble.clip({ notes: notes, pattern: pattern }));
 
-    const outPathStub = this.file.path.substring(0, this.file.path.lastIndexOf("/"));
+    const outPathStub = this.path.substring(0, this.path.lastIndexOf("/"));
     const outPath = `${outPathStub}/${this.midiName}.mid`;
     scribble.midi(clips[0], outPath);
+  }
+
+  private async compressFile(): Promise<void> {
+    const compressor = new Compressor(this.path);
+    await compressor.compressImage();
+    this.path = compressor.getCompressedPath();
   }
 }
