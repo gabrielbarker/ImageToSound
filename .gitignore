@@ -108,3 +108,6 @@ out/
 
 # Webpack bundled files
 build/
+
+# Demo files
+src/demo/
