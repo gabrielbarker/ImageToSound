@@ -5,15 +5,17 @@ import DefaultProgressionCreator from "./DefaultProgressionCreator";
 
 export default class ProgressionCreatorFactory {
   private pixelsObject: any;
+  private static progressionMap: any = {
+    "Reverse Row Order": () => ReverseRowOrderProgressionCreator,
+    "Row Order": RowOrderProgressionCreator,
+  };
 
   constructor(pixelsObject: any) {
     this.pixelsObject = pixelsObject;
   }
 
   public getProgression(name: string, scaleLength: number = 7): ProgressionCreator {
-    if (name === "Reverse Row Order")
-      return new ReverseRowOrderProgressionCreator(this.pixelsObject, scaleLength);
-    if (name === "Row Order") return new RowOrderProgressionCreator(this.pixelsObject, scaleLength);
-    return new DefaultProgressionCreator(this.pixelsObject, scaleLength);
+    const progression = ProgressionCreatorFactory.progressionMap[name] || DefaultProgressionCreator;
+    return new progression(this.pixelsObject, scaleLength);
   }
 }
