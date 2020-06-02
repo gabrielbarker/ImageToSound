@@ -3,7 +3,7 @@ import BrightnessPatternCreator from "./BrightnessPatternCreator";
 import DarknessPatternCreator from "./DarknessPatternCreator";
 import ProgressionCreator from "./ProgressionCreator";
 import RowOrderProgressionCreator from "./RowOrderProgressionCreator";
-import ReverseOrderProgressionCreator from "./ReverseOrderProgressionCreator";
+import ReverseOrderProgressionCreator from "./ReverseRowOrderProgressionCreator";
 
 export default class PixelMusicalData {
   private patternCreator: PatternCreator;
@@ -11,7 +11,7 @@ export default class PixelMusicalData {
 
   constructor(pixelsObject: any) {
     this.patternCreator = new BrightnessPatternCreator(pixelsObject);
-    this.progressionCreator = new RowOrderProgressionCreator(pixelsObject);
+    this.progressionCreator = new RowOrderProgressionCreator(pixelsObject, 7);
   }
 
   public getPatternsFromPixelRows(): string[] {

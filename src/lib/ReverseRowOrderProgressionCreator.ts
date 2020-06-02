@@ -1,7 +1,7 @@
 import Pixel from "./Pixel";
 import ProgressionCreator from "./ProgressionCreator";
 
-export default class RowOrderProgressionCreator extends ProgressionCreator {
+export default class ReverseRowOrderProgressionCreator extends ProgressionCreator {
   public getProgressions(): string[] {
     return this.pixelRows.map((pixelRow) => this.getProgressionFromPixelRow(pixelRow));
   }

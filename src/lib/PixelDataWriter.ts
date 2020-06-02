@@ -14,8 +14,8 @@ export default class PixelDataWriter {
   constructor(pixelsObject: any, writeStream: fs.WriteStream) {
     this.pixels = pixelsObject.data;
     this.writeStream = writeStream;
-    this.widthInPixels = pixelsObject.shape[0];
-    this.numberOfRows = pixelsObject.shape[1];
+    this.widthInPixels = pixelsObject.width;
+    this.numberOfRows = pixelsObject.height;
     this.totalNumberOfpixels = this.widthInPixels * this.numberOfRows;
   }
 
