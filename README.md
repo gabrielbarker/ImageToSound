@@ -2,7 +2,7 @@
 
 _This project is a collaboration between artist Bethany Williamson and software developer Gabriel Barker._
 
-<img align="left" src="ImageToSoundLogo2.png">
+<img align="left" src="img/ImageToSoundLogo2.png">
 <br/>
 <br/>
 <br/>

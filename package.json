@@ -45,7 +45,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "./ImageToSoundLogo2.icns"
+        "icon": "./img/ImageToSoundLogo2.icns"
       },
       "makers": [
         {
