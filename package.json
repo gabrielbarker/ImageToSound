@@ -2,12 +2,14 @@
   "name": "imagetosound",
   "version": "1.0.0",
   "description": "",
-  "main": "out/main.js",
+  "main": "dist/main.js",
   "scripts": {
-    "start": "tsc && node out/index",
+    "start": "electron-forge start",
     "app": "npm run bundle && electron .",
     "electron": "electron .",
-    "bundle": "tsc && webpack-cli -p"
+    "bundle": "tsc && webpack-cli -p",
+    "package": "electron-forge package",
+    "make": "electron-forge make && rm -r out/imagetosound-darwin-x64/imagetosound.app/Contents/Resources/app/src"
   },
   "repository": {
     "type": "git",
@@ -20,6 +22,12 @@
   },
   "homepage": "https://github.com/gabrielbarker/ImageToSound#readme",
   "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.51",
+    "@electron-forge/maker-deb": "^6.0.0-beta.51",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.51",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.51",
+    "@electron-forge/maker-zip": "^6.0.0-beta.51",
+    "electron": "^8.3.1",
     "node-loader": "^0.6.0",
     "ts-loader": "^7.0.4",
     "typescript": "^3.8.3",
@@ -29,9 +37,38 @@
   "dependencies": {
     "@types/node": "12.0.0",
     "@types/sharp": "^0.25.0",
-    "electron": "^8.3.0",
+    "electron-squirrel-startup": "^1.0.0",
     "image-pixels": "^2.2.2",
     "scribbletune": "^3.5.0",
     "sharp": "^0.25.3"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "icon": "./ImageToSoundLogo2.icns"
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "Image To Sound"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        }
+      ]
+    }
   }
 }
