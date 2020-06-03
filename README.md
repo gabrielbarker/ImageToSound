@@ -7,7 +7,6 @@ _This project is a collaboration between artist Bethany Williamson and software 
 <br/>
 <br/>
 <br/>
-<br/>
 This project, ImageToSound, seeks to turn images into music. The raw pixel data is extracted from images and processed to produce midi files. The continuing goal of the project is to develop increasingly sophisticated rules to capture the essential aspects of the image, and reflect them in the sounds produced.
 <br/>
 <br/>
