@@ -1,4 +1,4 @@
-# 𝄢
+# Image To Sound
 
 _This project is a collaboration between artist Bethany Williamson and software developer Gabriel Barker._
 
